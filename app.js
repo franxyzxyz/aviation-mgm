@@ -17,20 +17,6 @@ var Terminals = require("./models/terminal");
 // })
 
 
-Terminals.findOne({"name" : "Terminal 1"}, function(err,terminal){
-
-  Airports.findOne({"name" : "JFK"}, function(err, airport){
-
-
-    airport.terminals.push(terminal);
-
-    airport.save(function(err){
-      if (err) console.log(err);
-      console.log("airport saved");
-    })
-  })
-})
-
 
 
 app.listen(port);

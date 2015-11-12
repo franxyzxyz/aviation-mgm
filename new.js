@@ -1,3 +1,14 @@
+var passenger1 = new Passenger({
+  firstName: "Jacky",
+  lastName: "Lee",
+  dob: new Date('01.02.1987')
+});
+
+passenger1.save(function(err) {
+  if (err) console.log(err);
+  console.log('User created!');
+});
+
 var passenger2 = new Passenger({
   firstName: "Frances",
   lastName: "Ng",
@@ -66,3 +77,19 @@ Flights.find({}, function(err, flights){
         console.log('terminal created!');
       });
   });
+
+
+// Push Airport into Terminal
+
+Terminals.findOne({"name" : "Terminal 1"}, function(err,terminal){
+
+  Airports.findOne({"name" : "JFK"}, function(err, airport){
+
+    airport.terminals.push(terminal);
+
+    airport.save(function(err){
+      if (err) console.log(err);
+      console.log("airport saved");
+    })
+  })
+})
